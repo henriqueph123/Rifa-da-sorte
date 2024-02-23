@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/cards.css">
+	<link rel="stylesheet" href="css/form.css">
+	<link rel="stylesheet" href="css/final.css">
+	<link rel="stylesheet" href="css/mediaQ.css">
+	<title>Pagamento Concluído | Cartão de Crédito</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		.container-form {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+		}
+
+		.finaliza {
+			background-color: #fff; /* Adicione a cor de fundo desejada */
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		}
+
+		/* Adicione estilos adicionais conforme necessário */
+	</style>
+</head>
+<body>
+	<section class="container-form">
+		<div class="finaliza">
+			<img src="images/icon-complete.svg" alt="" class="img-sucess">
+			<h1 class="thanks">Análise pela nossa equipe</h1>
+			<p class="subThanks">"Lembramos que, caso seu pagamento via PIX não tenha sido efetuado com sucesso, não será gerado o número necessário para sua participação na rifa. Certifique-se de que a transação foi concluída corretamente para garantir sua participação. Além disso, para pagamentos realizados com cartão, o processo ficará em análise pelo nosso sistema. Esteja atento(a) para mais informações, que serão enviadas por e-mail ou WhatsApp. Agradecemos pela sua atenção e compreensão."</p>
+			<input type="submit" value="Continuar" class="button__final" id="button" onclick="window.location.href = 'index.html'">
+		</div>
+	</section>
+	<script src="js/infoCard.js"></script>
+</body>
+</html>

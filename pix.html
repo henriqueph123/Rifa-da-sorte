@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code para Pix</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+    #qr-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    #qr-code {
+        width: 300px;
+        height: 300px;
+    }
+    #copy-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        margin-top: 20px;
+    }
+    #copy-button:hover {
+        background-color: #0056b3;
+    }
+    #warning {
+        background-color: #ffe6e6;
+        border: 1px solid #ff9999;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+        color: rgb(0, 0, 0); /* Alteração para vermelho */
+    }
+    #timer {
+        font-size: 20px;
+        font-weight: bold;
+        color: rgb(5, 5, 5);
+        margin-bottom: 10px;
+    }
+    .option-buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .option-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .option-button:hover {
+        filter: brightness(0.9);
+    }
+</style>
+</head>
+<body>
+
+<div id="warning">
+    <p><strong>Antes de fazer o pagamento, leia com atenção:</strong></p>
+    <p>Após apertar o botão "Pix copiar e cola", você terá 60 segundos para efetuar o pagamento.</p>
+    <p>Lembramos que a chave Pix é uma chave Pix copiar e cola. Ao efetuar o pagamento no seu banco, selecione a chave Pix copiar e cola.</p>
+</div>
+
+<div id="qr-container">
+    <h1>QR Code para Pix</h1>
+    <img id="qr-code" src="./images/QR Code.jpeg" alt="QR Code">
+</div>
+
+<button id="copy-button">Pix copiar e cola</button>
+
+<div id="timer">Tempo restante: 60s</div>
+
+<div id="options" class="option-buttons" style="display: none;">
+    <p id="payment-warning">Pressione o botão "Continuar" apenas se você já efetuou o pagamento.</p>
+    <button class="option-button" id="continue-button">Continuar</button>
+    <button class="option-button" id="back-button">Voltar para selecionar outro método de pagamento</button>
+</div>
+
+<script>
+document.getElementById("copy-button").addEventListener("click", function() {
+    var chavePixAleatoria = "00020126330014br.gov.bcb.pix0111480435298845204000053039865802BR5925PAULO HENRIQUE LEITE SOAR6009Sao Paulo62070503***6304609E";
+    var tempInput = document.createElement("input");
+    tempInput.value = chavePixAleatoria;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    alert("Chave Pix aleatória copiada com sucesso. Você tem 60 segundos para efetuar o pagamento.");
+    
+    // Definindo o contador regressivo de 60 segundos
+    var segundos = 60;
+    var timerElement = document.getElementById("timer");
+    var timerInterval = setInterval(function() {
+        segundos--;
+        timerElement.textContent = "Tempo restante: " + segundos + "s";
+        if (segundos <= 0) {
+            clearInterval(timerInterval);
+            alert("Tempo esgotado. Você não pode mais copiar a chave Pix aleatória.");
+        }
+    }, 1000); // 1000 milissegundos = 1 segundo
+    
+    // Exibir os botões de opção após copiar a chave Pix aleatória
+    document.getElementById("options").style.display = "flex";
+});
+
+document.getElementById("continue-button").addEventListener("click", function() {
+    // Redirecionar o usuário para outra página
+    window.location.href = "finaliza.html"; // Substitua "outra_pagina.html" pelo URL da página desejada
+    
+    // Ocultar o botão "Voltar" após clicar em "Continuar"
+    document.getElementById("back-button").style.display = "none";
+});
+
+document.getElementById("back-button").addEventListener("click", function() {
+    // Implemente a lógica para voltar para a página anterior ou selecionar outro método de pagamento
+    alert("Voltando para a página anterior ou selecionando outro método de pagamento...");
+    
+    // Ocultar o botão "Continuar" após clicar em "Voltar"
+    document.getElementById("continue-button").style.display = "none";
+});
+</script>
+
+</body>
+</html>
